@@ -1,0 +1,124 @@
+# This file is VSCode specific
+# you must have "humao.rest-client" extension installed.
+
+@host = http://localhost:8080
+@token = KCGapEkKH4GAbJoVlkAI0DUWvNyFo6gAZXPaJbaBI4toCs7KiXBHp7rEuM8qei
+
+###
+# @name login
+POST {{host}}/api/login
+Content-Type: application/json
+
+{
+    "email": "ivan@gmail.com",
+    "password": "123456"
+}
+
+
+###
+POST {{host}}/api/user
+Content-Type: application/json
+
+{
+	"name":     "dima",
+	"surname":   "maleykovich",
+	"birthdate": "1977-10-08",
+	"gender":    "male",
+	"city":      "Peterburg",
+	"email":     "maleykovich@gmail.com",
+	"password":  "123456"
+}
+
+###
+GET {{host}}/api/auth_user
+Authorization: Bearer {{token}}
+
+
+###
+PUT {{host}}/api/auth_user/avatar
+Authorization: Bearer {{token}}
+Content-Type: image/png
+
+< assets/student.png
+
+
+###
+GET {{host}}/api/users/2
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/users/1
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/users?search=&first=&after=
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/users?search=mal&first=&after=
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/users?search=pet&first=&after=pet
+Authorization: Bearer {{token}}
+
+###
+POST  {{host}}/api/auth_user/personal_page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"text": "yyysdfsdfsf personal page text request data"
+}
+
+###
+POST  {{host}}/api/auth_user/friendRequest
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"friend_id": "3"
+}
+
+###
+POST  {{host}}/api/auth_user/friend_request
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"friend_id": "4"
+}
+
+# ###
+# GET  {{host}}/api/auth_user/friend_requests
+# Authorization: Bearer {{token}}
+
+###
+GET  {{host}}/api/auth_user/who_request_friendship
+Authorization: Bearer {{token}}
+
+
+###
+POST  {{host}}/api/auth_user/friend
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+	"friend_id": "4"
+}
+
+# ###
+# GET  {{host}}/api/user/friends
+# Content-Type: application/json
+
+# {
+# 	"friend_id": "4"
+# }
+
+
+###
+GET  {{host}}/api/auth_user/my_friends
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/users/1/personal_page

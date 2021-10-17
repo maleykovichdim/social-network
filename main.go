@@ -26,10 +26,12 @@ const (
 )
 
 var (
-	port        = env("PORT", "8080")
-	originStr   = env("ORIGIN", "http://localhost:"+port)
-	databaseURL = env("DATABASE_URL", "root:root@/socialnet")
-	tokenKey    = env("TOKEN_KEY", "supersecretkeyyoushouldnotcommit")
+	port      = env("PORT", "8080")
+	originStr = env("ORIGIN", "http://localhost:"+port)
+	//databaseURL = env("DATABASE_URL", "root:root@/socialnet")
+	databaseURL = env("JAWSDB_URL", "root:root@/socialnet")
+
+	tokenKey = env("TOKEN_KEY", "supersecretkeyyoushouldnotcommit")
 
 	// smtpHost     = env("SMTP_HOST", "smtp.mailtrap.io")
 	// smtpPort     = env("SMTP_PORT", "25")
@@ -45,6 +47,10 @@ func main() {
 }
 
 func run() error {
+
+	if databaseURL != "root:root@/socialnet" {
+		databaseURL += `?useUnicode=true&characterEncoding=utf-8&reconnect=true`
+	}
 
 	allowedOrigin := os.Getenv("ALLOWED_ORIGIN")
 	var useNats bool
